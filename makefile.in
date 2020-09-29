@@ -1,0 +1,13 @@
+ifeq ($(OS),Windows_NT)
+    CC=gcc -mno-ms-bitfields
+    CPP=g++ -mno-ms-bitfields
+	SUFFIX=.exe
+else
+	CC=gcc
+	CPP=g++
+	SUFFIX=
+endif
+LD=ld
+RM=rm -rf
+ROOT=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+INCLUDES=$(ROOT)includes

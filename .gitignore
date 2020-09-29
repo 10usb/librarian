@@ -1,0 +1,6 @@
+﻿.vscode
+/resources/
+librarian.code-workspace
+desktop.ini
+*.o
+bin/
