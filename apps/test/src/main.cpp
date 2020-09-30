@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <libgen.h>
+#include <unistd.h>
 
 #include <sunit/storage/index.hpp>
 #include <sunit/storage/file.hpp>
@@ -13,6 +15,15 @@ using namespace sunit::librarian;
 
 int main(int argc, const char ** argv){
     setbuf(stdout, 0);
+
+    // Make sure the working directory is the same this executable is in
+    char * path = dirname(strcpy(new char[strlen(argv[0]) + 1], argv[0]));
+    if(chdir(path) < 0){
+        free(path);
+        fprintf(stderr, "Failed to set the working directory");
+        return -1;
+    }
+    free(path);
 
     printf("-----------------\n");
     printf("IndexHeader: %d\n", sizeof(IndexHeader));
