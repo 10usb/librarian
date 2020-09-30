@@ -1,5 +1,5 @@
-#ifndef SUNIT_STORAGE_FIELDSET
-#define SUNIT_STORAGE_FIELDSET
+#ifndef SUNIT_STORAGE_STRUCTURE
+#define SUNIT_STORAGE_STRUCTURE
 
 #include <stdint.h>
 
@@ -10,16 +10,17 @@
 namespace sunit::storage {
     namespace sl = sunit::librarian;
 
-    class FieldSet {
-        int size;
-        int count;
-        Field *fields;
-        uint32_t *offsets;
-        char *text;
+    class Structure {
+        size_t _size;
+        int _count;
+        Field *_fields;
+        size_t *_offsets;
+        char *_text;
         public:
-            FieldSet(const Field *fields, int count, const char *text);
-            ~FieldSet();
+            Structure(const Field *fields, int count, const char *text);
+            ~Structure();
             
+            size_t size();
             int count();
             int ordinal(const char *name);
             int key(uint8_t ordinal, char *buffer);

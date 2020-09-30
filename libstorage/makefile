@@ -1,7 +1,7 @@
 # Library Storage
 include ../makefile.in
 OUTPUT=bin/libstorage.o
-SOURCES=table.cpp index.cpp file.cpp
+SOURCES=table.cpp index.cpp file.cpp structure.cpp
 TEMP=obj
 
 OBJECTS=$(patsubst %.cpp,$(TEMP)/%.o,$(patsubst %.c,$(TEMP)/%.o,$(SOURCES)))
