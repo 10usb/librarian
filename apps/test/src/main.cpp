@@ -84,7 +84,7 @@ int main(int argc, const char ** argv){
 
     printf("-----------------\n");
 
-    structure->fromDataSet(key, buffer);
+    structure->fromDataSet(key, buffer, 0, 0);
     delete key;
 
     printf("-----------------\n");

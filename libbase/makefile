@@ -1,7 +1,7 @@
 # Library Base
 include ../makefile.in
 OUTPUT=bin/libbase.o
-SOURCES=hash.cpp basicset.cpp
+SOURCES=hash.cpp basicset.cpp datatype.cpp
 TEMP=obj
 OBJECTS=$(patsubst %.cpp,$(TEMP)/%.o,$(patsubst %.c,$(TEMP)/%.o,$(SOURCES)))
 CFLAGS=-I$(INCLUDES)
