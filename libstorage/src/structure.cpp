@@ -78,8 +78,32 @@ sl::DataType Structure::type(uint8_t ordinal){
     return _fields[ordinal].type;
 }
 
-void Structure::fromDataSet(const sl::DataSet *dataSet, void *destination){
+size_t Structure::fromDataSet(const sl::DataSet *dataSet, void *destination, char *text, size_t textSize){
+    char buffer[1024];
+    for(int index = 0; index < _count; index++){
+        Field *field = &_fields[index];
+        char *name = _text + field->name;
+        int ordinal = dataSet->ordinal(name);
 
+        if(ordinal < 0)
+            continue;
+
+        printf("%d: %s\n", ordinal, name);
+
+        if(field->type != sl::Text){
+            sl::DataType type = dataSet->type(ordinal);
+            if(type == sl::Text)
+                continue;
+
+            int length = dataSet->get(ordinal, buffer);
+
+            sl::assign(buffer, type, length, (char*)destination + _offsets[index], field->type, field->size);
+        }else{
+
+        }
+    }
+
+    return 0;
 }
 
 sl::DataSet *Structure::toDataSet(const void *source){

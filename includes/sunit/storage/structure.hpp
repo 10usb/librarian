@@ -26,7 +26,7 @@ namespace sunit::storage {
             int key(uint8_t ordinal, char *buffer);
             sl::DataType type(uint8_t ordinal);
 
-            void fromDataSet(const sl::DataSet *dataSet, void *destination);
+            size_t fromDataSet(const sl::DataSet *dataSet, void *destination, char *text, size_t textSize);
             sl::DataSet *toDataSet(const void *source);
             int compare(const void *left, const void *right);
     };

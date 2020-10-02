@@ -63,28 +63,34 @@ int main(int argc, const char ** argv){
     //     index->addField("created", sl::Integer, 4);
     // }
 
-    // printf("-----------------\n");
+    printf("-----------------\n");
 
-    // BasicSet *key = new BasicSet(5);
-    // int32_t value = 123;
-    // key->add("customer_id", sl::Integer, 4, &value);
+    BasicSet *key = new BasicSet(5);
+    int32_t value;
 
-    // value = 1600553386;
-    // key->add("created", sl::Integer, 4, &value);
+    value = 1600553386;
+    key->add("created", sl::Integer, 4, &value);
 
-    // printf("count: %d\n", key->count());
-    // printf("ordinal: %d\n", key->ordinal("created"));
-    // printf("size: %d\n", key->get(1, 0));
+    value = 123;
+    key->add("customer_id", sl::Integer, 4, &value);
 
-    // int32_t extract;
-    // printf("size: %d\n", key->get(0, &extract));
-    // printf("extract: %d\n", extract);
+    printf("count: %d\n", key->count());
+    printf("ordinal: %d\n", key->ordinal("created"));
+    printf("size: %d\n", key->get(1, 0));
 
+    int32_t extract;
+    printf("size: %d\n", key->get(0, &extract));
+    printf("extract: %d\n", extract);
 
-    // printf("-----------------\n");
+    printf("-----------------\n");
+
+    structure->fromDataSet(key, buffer);
+    delete key;
+
+    printf("-----------------\n");
     // index->add(1234, key);
     // printf("-----------------\n");
-    // // delete key;
+    
     // delete index;
 
 
