@@ -21,11 +21,11 @@ namespace sunit::librarian {
         public:
             BasicSet(int capacity);
             ~BasicSet();
-            int count();
-            int ordinal(const char *name);
-            int key(uint8_t ordinal, char *buffer);
-            DataType type(uint8_t ordinal);
-            int32_t get(uint8_t ordinal, void *output);
+            int count() const;
+            int ordinal(const char *name) const;
+            int key(uint8_t ordinal, char *buffer) const;
+            DataType type(uint8_t ordinal) const;
+            int32_t get(uint8_t ordinal, void *output) const;
             int add(const char *name, DataType type, int32_t size, const void *data);
     };
 }

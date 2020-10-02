@@ -22,11 +22,11 @@ BasicSet::~BasicSet(){
     delete[] values;
 }
 
-int BasicSet::count(){
+int BasicSet::count() const {
     return _count;
 }
 
-int BasicSet::ordinal(const char *name){
+int BasicSet::ordinal(const char *name) const {
     for(int index = 0; index < _count; index++){
         if(strcmp(values[index].name, name) == 0) return index;
     }
@@ -44,7 +44,7 @@ int BasicSet::ordinal(const char *name){
     // return table[index]->ordinal;
 }
 
-int BasicSet::key(uint8_t ordinal, char *buffer){
+int BasicSet::key(uint8_t ordinal, char *buffer) const {
     if(ordinal >= _count) return -1;
 
     Value *value = &values[ordinal];
@@ -55,12 +55,12 @@ int BasicSet::key(uint8_t ordinal, char *buffer){
     return size;
 }
 
-DataType BasicSet::type(uint8_t ordinal){
+DataType BasicSet::type(uint8_t ordinal) const {
     if(ordinal >= _count) return Undefined;
     return values[ordinal].type;
 }
 
-int32_t BasicSet::get(uint8_t ordinal, void *output){
+int32_t BasicSet::get(uint8_t ordinal, void *output) const {
     if(ordinal >= _count) return -1;
 
     if(!output) return values[ordinal].size;
