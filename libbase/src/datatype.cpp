@@ -33,10 +33,12 @@ inline void assignInt(int64_t value, DataConvert *destination, DataType dstType,
             case 6: destination->int6 = value; break;
             case 7: destination->int7 = value; break;
             case 8: destination->int8 = value; break;
+            default: throw 0x10003;
         }
     }else if(dstType == Float){
         assignFloat(value, destination, dstType, dstLength);
     }else if(dstType == Text){
+        throw 0x10000;
     }
 }
 
@@ -51,10 +53,12 @@ inline void assignFloat(long double value, DataConvert *destination, DataType ds
             case 6: destination->int6 = value; break;
             case 7: destination->int7 = value; break;
             case 8: destination->int8 = value; break;
+            default: throw 0x10004;
         }
     }else if(dstType == Integer){
         assignInt(value, destination, dstType, dstLength);
     }else if(dstType == Text){
+        throw 0x10000;
     }
 }
 
@@ -73,15 +77,17 @@ void sl::assign(const void *source, DataType srcType, int srcLength, void *desti
             case 6: assignInt(src->int6, dst, dstType, dstLength); break;
             case 7: assignInt(src->int7, dst, dstType, dstLength); break;
             case 8: assignInt(src->int8, dst, dstType, dstLength); break;
+            default: throw 0x10001;
         }
     }else if(srcType == Float){
         switch (srcLength){
             case 4: assignFloat(src->float4, dst, dstType, dstLength); break;
             case 8: assignFloat(src->float8, dst, dstType, dstLength); break;
             case 12: assignFloat(src->float12, dst, dstType, dstLength); break;
+            default: throw 0x10002;
         }
     }else{
-
+        throw 0x10000;
     }
 }
 
