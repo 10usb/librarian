@@ -66,9 +66,12 @@ int main(int argc, const char ** argv){
     printf("-----------------\n");
 
     BasicSet *key = new BasicSet(5);
-    int32_t value;
+    int64_t value;
 
-    value = 1600553386;
+    value = -123456;
+    printf("---------------->\n");
+    sl::assign(-324.5, &value, sl::Integer, 4);
+    printf("----------------<\n");
     key->add("created", sl::Integer, 4, &value);
 
     value = 123;
@@ -76,15 +79,13 @@ int main(int argc, const char ** argv){
 
     printf("count: %d\n", key->count());
     printf("ordinal: %d\n", key->ordinal("created"));
-    printf("size: %d\n", key->get(1, 0));
-
     int32_t extract;
     printf("size: %d\n", key->get(0, &extract));
     printf("extract: %d\n", extract);
 
     printf("-----------------\n");
 
-    structure->fromDataSet(key, buffer, 0, 0);
+    //structure->fromDataSet(key, buffer, 0, 0);
     delete key;
 
     printf("-----------------\n");
