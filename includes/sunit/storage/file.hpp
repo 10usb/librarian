@@ -2,6 +2,7 @@
 #define SUNIT_STORAGE_FILE
 
 #include <stdint.h>
+#include <stddef.h>
 #include <sunit/storage/io.hpp>
 
 namespace sunit::storage {

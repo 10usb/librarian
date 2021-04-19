@@ -2,6 +2,7 @@
 #define SUNIT_STORAGE_STRUCTURE
 
 #include <stdint.h>
+#include <stddef.h>
 
 #include <sunit/storage/structs.hpp>
 #include <sunit/librarian/datatype.hpp>

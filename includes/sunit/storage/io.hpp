@@ -2,6 +2,7 @@
 #define SUNIT_STORAGE_IO
 
 #include <stdint.h>
+#include <stddef.h>
 
 namespace sunit::storage {
     class IO {
