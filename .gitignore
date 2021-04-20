@@ -3,4 +3,5 @@
 librarian.code-workspace
 desktop.ini
 *.o
+*.d
 bin/

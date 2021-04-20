@@ -6,7 +6,8 @@ DEPENDANCIES=libbase libstorage
 TEMP=obj
 OBJECTS=$(patsubst %.cpp,$(TEMP)/%.o,$(patsubst %.c,$(TEMP)/%.o,$(SOURCES)))
 TARGET=$(OUTPUT)$(SUFFIX)
-CFLAGS=-I$(INCLUDES)
+CFLAGS=-I$(INCLUDES) -MMD -MP
+DEPS=$(OBJECTS:.o=.d)
 LIBS=$(foreach x, $(DEPENDANCIES), $(ROOT)obj/$(x).o)
 
 build: dependencies $(TARGET)
@@ -14,7 +15,7 @@ build: dependencies $(TARGET)
 rebuild: clean-all dependencies $(TARGET)
 
 clean:
-	$(RM) $(TARGET) $(OBJECTS) $(LIBS)
+	$(RM) $(TARGET) $(OBJECTS) $(LIBS) $(DEPS)
 
 clean-all: clean
 	@$(foreach x,$(DEPENDANCIES),$(MAKE) --no-print-directory -C $(ROOT)$(x) clean OUTPUT=$(ROOT)obj/$(x).o;)
@@ -36,5 +37,7 @@ $(LIBS):
 
 dependencies:
 	@$(foreach x,$(DEPENDANCIES),$(MAKE) --no-print-directory -C $(ROOT)$(x) OUTPUT=$(ROOT)obj/$(x).o;)
+
+-include $(DEPS)
 
 .PHONY: build rebuild clean clean-all dependencies

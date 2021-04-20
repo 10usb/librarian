@@ -9,5 +9,5 @@ else
 endif
 LD=ld
 RM=rm -rf
-ROOT=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+ROOT:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 INCLUDES=$(ROOT)includes

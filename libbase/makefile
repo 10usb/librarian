@@ -4,14 +4,15 @@ OUTPUT=bin/libbase.o
 SOURCES=hash.cpp basicset.cpp datatype.cpp
 TEMP=obj
 OBJECTS=$(patsubst %.cpp,$(TEMP)/%.o,$(patsubst %.c,$(TEMP)/%.o,$(SOURCES)))
-CFLAGS=-I$(INCLUDES)
+CFLAGS=-I$(INCLUDES) -MMD -MP
+DEPS=$(OBJECTS:.o=.d)
 
 build: $(OUTPUT)
 
 rebuild: clean $(OUTPUT)
 
 clean:
-	$(RM) $(OUTPUT) $(OBJECTS)
+	$(RM) $(OUTPUT) $(OBJECTS) $(DEPS)
 
 $(OUTPUT): $(OBJECTS) | $(dir $(OUTPUT))
 	$(LD) -i -o $@ $(OBJECTS)
@@ -25,4 +26,6 @@ $(TEMP)/%.o: src/%.cpp | $(TEMP)
 $(TEMP) $(dir $(OUTPUT)):
 	mkdir $@
 
-.PHONY: build rebuild clean test
+-include $(DEPS)
+
+.PHONY: build rebuild clean
